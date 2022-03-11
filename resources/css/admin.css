@@ -1,0 +1,88 @@
+.user-panel {
+    height: 60px;
+}
+
+.user-panel>.info {
+    position: relative;
+    left: auto;
+}
+
+.skin-blue .sidebar-menu>li.header {
+    color: white;
+}
+
+/* -------------- SweetAlert2 -------------- */
+.sweetalert2-html-wellcomeText {
+    color: #000;
+    font-size: 3rem;
+}
+.sweetalert2-html-errorText {
+    color: #f47474 ;
+    font-size: 3rem;
+}
+
+.sweetalert2-html-actionText {
+    color: #000;
+    font-size: 2rem;
+}
+/*-------------------------------------------*/
+
+/* Se ouclta el footer de la pantalla de loguego.
+Ya que solo se requieren las referencias a los scripts*/
+.login-page .main-footer {
+    display: none;
+}
+/*------------------------------------------------------------*/
+/* Edición de botones de Acción Editar/Eliminar
+para que se ubiquen uno al lado del otro */
+.box-edit-delete a {
+    margin: 1rem 0.5rem;
+}
+/*------------------------------------------------------------*/
+/* VALIDATIONS ALERTS */
+
+.error {
+    background-color: rgb(185, 0, 0);
+    text-align: center;
+    padding: 0.2rem 0.5rem;
+    border-radius: 1rem;
+    /*padding-left: 0.5rem;
+    padding-right: 0.5rem;*/
+    color: white;
+    margin-right: 0rem;
+}
+
+
+.formulario_grupo-correcto {
+    color: #1ed12d;
+    opacity: 1;
+}
+.textField_incorrecto {
+    color: #bb2929;
+    /* opacity: 1; */
+}
+
+.space-between {
+    justify-content: space-around;
+}
+
+/* Alertas que aparecen y luego no son visibles*/
+.no-visible {
+    display: none;
+}
+
+.aparece {
+    display: inline;
+}
+
+
+/* /////////////////////////////////////////////////// */
+/*.columnas-formulario {
+    padding-right: 0;
+    padding-left: 0;
+}*/
+
+
+.light-blue {
+    color: #04d5fa;
+}
