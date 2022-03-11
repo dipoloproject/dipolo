@@ -32,22 +32,18 @@ const mix = require('laravel-mix');
     ], 'public/css/all.css')
     .scripts([
                 
-                'resources/js/bootstrap.js',
-                'resources/js/bootstrap.min.js',        
-                
                 'resources/js/jquery.min.js',
-                'resources/js/jquery.slimscroll.min.js',
-                
-                'resources/js/admin-ajax.js',
-                'resources/js/adminlte.js',
-                'resources/js/adminlte.min.js',
-                'resources/js/dataTables.bootstrap.min.js',
-                'resources/js/demo.js',
+                'resources/js/bootstrap.min.js',        
+                'resources/js/jquery.slimscroll.min.js',        
                 'resources/js/fastclick.js',
-                'resources/js/jquery.dataTables.min.js',
+                'resources/js/adminlte.min.js',
                 'resources/js/sweetalert2.all.min.js',
-                'resources/js/sweetalert2.min.js',
-                'resources/js/app_config.js'
+                'resources/js/jquery.dataTables.min.js',
+                'resources/js/dataTables.bootstrap.min.js',
+                'resources/js/admin-ajax.js',
+                'resources/js/demo.js',
+                'resources/js/app_config.js',
+                'resources/js/bootstrap.js'
     ], 'public/js/all.js');
 //
 
