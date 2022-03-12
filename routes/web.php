@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RubroController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('admin-area');
 });
+
+
+Route::get('/rubros', [RubroController::class, 'index']);
