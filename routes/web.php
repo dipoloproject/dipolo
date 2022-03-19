@@ -20,3 +20,5 @@ Route::get('/', function () {
 
 
 Route::get('/rubros', [RubroController::class, 'index']);
+
+Route::get('/rubros/actualizar/{id}', [RubroController::class, 'actualizar'])->name('rubros.actualizar');

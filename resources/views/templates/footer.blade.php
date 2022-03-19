@@ -9,8 +9,9 @@
   
 </div>
 <!-- ./wrapper -->
-
-  <script src="js/all.js"></script>
+  
+  <script src="{{asset("js./all.js")}}"></script>
+  <!-- <script src="js/all.js"></script> -->
 
   <!-- TODOS ESTOS SCRIPTs SERAN COMENTADOS -->
 

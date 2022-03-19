@@ -14,7 +14,8 @@
   <!-- TODOS ESTOS LINKS SERAN COMENTADOS -->
 
   <!-- Bootstrap 3.3.7 -->
-  <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+  <!-- <link rel="stylesheet" href="../../../resources/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="{{asset("css./all.css")}}">
   <!-- Font Awesome -->
   <!-- <link rel="stylesheet" href="css/font-awesome.min.css"> -->
   <!-- Ionicons -->

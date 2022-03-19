@@ -10,6 +10,9 @@ $(document).ready(function () {
       'info'        : true,
       'autoWidth'   : false,
 
+      'ordering'   : false,             //se deshabilita el ordenamiento 
+      //"order"       : [[0, "desc"]],  //se indica la columna sobre la cual se ordenan las filas 
+
       'language'   :  {
                         paginate: {
                                     next : 'Siguiente',
