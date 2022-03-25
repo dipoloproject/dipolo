@@ -124,6 +124,9 @@ foreach($rubros as $rubro) {
   </div>
   <!-- /.content-wrapper -->
 
+  
+  
   @include ('templates/footer')
-
+  @include ('rubros.alertas')
+  
 

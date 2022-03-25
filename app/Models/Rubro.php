@@ -53,6 +53,17 @@ class Rubro extends Model
         //exit;
         return $rubro;
     }
+
+
+
+    public static function alta($argumentos) {
+        
+        $mensaje = DB::select('CALL sp_rubros_alta( ?, ?, ?, ?, ?, ?, ? )', $argumentos);
+        
+        return $mensaje[0];
+    }
+
+
 ////////////////////////////////////////////////////////
     public static function arrayTree() {
         $array= [];

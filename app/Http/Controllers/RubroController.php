@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Rubro;
 
+use Illuminate\Http\Request;
+
 //use Illuminate\Http\Request;
 
 //importar el modelo Rubro (tiene que estar creado primero)
@@ -74,24 +76,49 @@ class RubroController extends Controller
         //
     }
 
+    // Solo mostrará la vista con el formulario a llenar
+    public function crear()
+    {
+        return view( 'rubros.crear' );
+    }
+
+    public function alta(Request $request)
+    {
+        //Se recuperan los datos ingresados en el formulario para crear un Rubro
+        $argumentos= [
+                        $request->idRubroPadre,
+                        $request->nombreRubro,
+                        $request->descripcionRubro,
+                        $request->ordenRubro,
+                        $request->destacadoRubro,
+                        $request->menuRubro,
+                        $request->estadoRubro
+                    ];
+
+        $respuesta = Rubro::alta($argumentos);
+
+        //var_dump($respuesta->Mensaje); exit;
+        if($respuesta->Mensaje == 'OK') {
+            /*  Se redirecciona a otra vista (colocando el nombre de la vista)
+                y se crea un mensaje de sesión llamado 'creacion' que contendrá la leyenda 'OK' */
+            return redirect()->route('rubros.index')->with('creacion', $respuesta->Mensaje);
+        } else {
+            return redirect()->route('rubros.crear')->with('creacion', $respuesta->Mensaje)->withInput();
+        }
+        
+        //exit;
+
+        //return $respuesta;
+        
+    }
+
     public function actualizar($id)
     {
         //  SE RECUPERA EL RUBRO QUE SE DESEA ACTUALIZAR
         $argumento= [intval($id)];
         $array_respuesta= Rubro::Dame($argumento);
         $rubro= $array_respuesta[0];
-                
-        
 
-        
-
-        /*echo ("<pre>");
-        var_dump($array);
-        echo ("</pre>");
-        exit;*/
-                
-        //Aqui se pone el resultado del Store Procedure pasandole $id (para que nos devuelva un objeto Rubro)
-        //$rubros= 'todos los rubros se muestran aqui';
         return view( 'rubros.actualizar', compact('rubro') );
         //['rubros'=>$rubros] es equivalente a compact('rubros') 
     }

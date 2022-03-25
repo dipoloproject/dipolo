@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/rubros', [RubroController::class, 'index']);
-
+Route::get('/rubros', [RubroController::class, 'index'])->name('rubros.index');
+Route::get('/rubros/crear', [RubroController::class, 'crear'])->name('rubros.crear');
+Route::post('/rubros/alta', [RubroController::class, 'alta'])->name('rubros.alta');
 Route::get('/rubros/actualizar/{id}', [RubroController::class, 'actualizar'])->name('rubros.actualizar');

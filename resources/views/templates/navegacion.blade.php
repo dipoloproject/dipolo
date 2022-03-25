@@ -89,8 +89,8 @@
             <span>Categorías</span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="lista-rubros.php"><i class="fa fa-list-ul"></i> Ver Todos </a></li>
-            <li><a href="crear-rubro.php"><i class="fa fa-plus"></i> Agregar </a></li>
+            <li><a href="{{route('rubros.index')}}"><i class="fa fa-list-ul"></i> Ver Todos </a></li>
+            <li><a href="{{route('rubros.crear')}}"><i class="fa fa-plus"></i> Agregar </a></li>
             <!-- <li><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
             <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li> -->
           </ul>
