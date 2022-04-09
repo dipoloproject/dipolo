@@ -31,7 +31,6 @@ const mix = require('laravel-mix');
                     'resources/css/skins/_all-skins.min.css'
     ], 'public/css/all.css')
     .scripts([
-                
                 'resources/js/jquery.min.js',
                 'resources/js/bootstrap.min.js',        
                 'resources/js/jquery.slimscroll.min.js',        
@@ -41,6 +40,7 @@ const mix = require('laravel-mix');
                 'resources/js/jquery.dataTables.min.js',
                 'resources/js/dataTables.bootstrap.min.js',
                 'resources/js/admin-ajax.js',
+                'resources/js/validacion_rubros.js',
                 'resources/js/demo.js',
                 'resources/js/app_config.js',
                 'resources/js/bootstrap.js'

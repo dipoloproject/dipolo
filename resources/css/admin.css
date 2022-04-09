@@ -35,9 +35,16 @@ Ya que solo se requieren las referencias a los scripts*/
 /*------------------------------------------------------------*/
 /* Edición de botones de Acción Editar/Eliminar
 para que se ubiquen uno al lado del otro */
-.box-edit-delete a {
+/*.box-create-info-edit-delete a {
     margin: 1rem 0.5rem;
+}*/
+
+.box-create-info-edit-delete {
+    display: flex;
+    flex-direction: row;
+    /*align-items: center;*/
 }
+
 /*------------------------------------------------------------*/
 /* VALIDATIONS ALERTS */
 
@@ -68,11 +75,17 @@ para que se ubiquen uno al lado del otro */
 
 /* Alertas que aparecen y luego no son visibles*/
 .no-visible {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    /*transition: visibility 3s ease-in-out, opacity 3s linear;
+    /*display: none;*/
 }
 
 .aparece {
-    display: inline;
+    visibility: visible;
+    opacity: 1;
+    /*transition: visibility 9s ease-in-out, opacity 3s linear;
+    /*display: inline;*/
 }
 
 

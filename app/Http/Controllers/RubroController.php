@@ -19,16 +19,8 @@ class RubroController extends Controller
      */
     public function index()
     {
-        //
         $rubros= Rubro::Buscar();
-
-        /*echo ("<pre>");
-        var_dump($rubros);
-        echo ("</pre>");
-        exit;*/
-
-        //Aqui se pone el resultado del Store Procedure
-        //$rubros= 'todos los rubros se muestran aqui';
+        
         return view( 'rubros.index', compact('rubros') );
         //['rubros'=>$rubros] es equivalente a compact('rubros') 
     }
@@ -77,13 +69,22 @@ class RubroController extends Controller
     }
 
     // Solo mostrará la vista con el formulario a llenar
-    public function crear()
+    public function crear($id)
     {
-        return view( 'rubros.crear' );
+        //$idRubroPadre= [intval($id)];
+        $idRubroPadre= $id;
+        return view( 'rubros.crear', compact('idRubroPadre') );
     }
 
     public function alta(Request $request)
     {
+        /*  Si se creará un rubro de nivel 1, entonces se tiene que 
+        $request->idRubroPadre es 0,
+        por lo que se le reasignara el valor NULL */
+        if( $request->idRubroPadre == 0) {
+            $request->idRubroPadre = NULL;
+        }
+
         //Se recuperan los datos ingresados en el formulario para crear un Rubro
         $argumentos= [
                         $request->idRubroPadre,
@@ -95,15 +96,15 @@ class RubroController extends Controller
                         $request->estadoRubro
                     ];
 
-        $respuesta = Rubro::alta($argumentos);
+        $respuesta = Rubro::Alta($argumentos);
 
         //var_dump($respuesta->Mensaje); exit;
         if($respuesta->Mensaje == 'OK') {
             /*  Se redirecciona a otra vista (colocando el nombre de la vista)
                 y se crea un mensaje de sesión llamado 'creacion' que contendrá la leyenda 'OK' */
-            return redirect()->route('rubros.index')->with('creacion', $respuesta->Mensaje);
+            return redirect()->route('rubros.index')->with('creacion_rubro', $respuesta->Mensaje);
         } else {
-            return redirect()->route('rubros.crear')->with('creacion', $respuesta->Mensaje)->withInput();
+            return redirect()->route('rubros.crear')->with('creacion_rubro', $respuesta->Mensaje)->withInput();
         }
         
         //exit;
@@ -123,6 +124,27 @@ class RubroController extends Controller
         //['rubros'=>$rubros] es equivalente a compact('rubros') 
     }
 
+    public function eliminar($id)
+    {
+        //  SE RECUPERA EL RUBRO QUE SE DESEA ACTUALIZAR
+        $argumento= [intval($id)];
+        $respuesta= Rubro::Eliminar($argumento);
+
+        return redirect()->route('rubros.index')->with('eliminacion_rubro', $respuesta->Mensaje);
+    }
+
+
+
+    public function subrubros($id)
+    {
+        //  SE RECUPERA EL RUBRO QUE SE DESEA ACTUALIZAR
+        $argumento= [intval($id)];
+        $array_respuesta= Rubro::Subrubros($argumento);
+
+        $subrubros= $array_respuesta;
+        return view( 'rubros.subrubros', compact('subrubros') );
+        //['rubros'=>$rubros] es equivalente a compact('rubros') 
+    }
 
 
 

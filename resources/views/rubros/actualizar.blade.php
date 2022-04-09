@@ -33,13 +33,18 @@ use App\Models\Rubro;
                                     <form role="form" name="form_crear-rubro" id="form_crear-rubro" method="post" action="action-rubro.php"> <!--  enctype="multipart/form-data" -->
                                           <div class="box-body"><!-- contenedor de ambas columnas del formulario -->
                                                 <div class="col-md-6 box-body"><!-- 1ra columna del formulario -->
-                                                      <div class="form-group" id="div_idRubroPadre">
+                                                      <!-- <div class="form-group" id="div_idRubroPadre">
                                                             <label for="idRubroPadre" >Rubro Padre</label><small> (El rubro a crear será hijo del rubro padre)</small>
                                                             <select class="form-control" name="idRubroPadre" id="idRubroPadre" >
-                                                            <option value="" selected disabled>--Seleccionar--</option><!-- opcion creada solo para visualizacion, su seleccion NO es valida -->
-                                                                  <?php mostrararbol(); ?>
-                                                            </select>
+                                                            <option value="" selected disabled>--Seleccionar--</option>--><!-- opcion creada solo para visualizacion, su seleccion NO es valida -->
+                                                                  <!-- <?php mostrararbol(); ?> -->
+                                                            <!--</select>
+                                                      </div> -->
+
+                                                      <div><!-- Contiene el identificador del Rubro que será el padre -->
+                                                        <input type="hidden" name="idRubroPadre" value="{{$rubro->idRubroPadre}}">
                                                       </div>
+
                                                       <div class="form-group">
                                                             <label for="nombreRubro">Nombre</label>
                                                             <input  type="text" class="form-control" id="nombreRubro" name="nombreRubro" placeholder="Ingresar Nombre del Rubro"

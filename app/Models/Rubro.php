@@ -56,9 +56,16 @@ class Rubro extends Model
 
 
 
-    public static function alta($argumentos) {
+    public static function Alta($argumentos) {
         
         $mensaje = DB::select('CALL sp_rubros_alta( ?, ?, ?, ?, ?, ?, ? )', $argumentos);
+        
+        return $mensaje[0];
+    }
+
+    public static function Eliminar($argumentos) {
+        
+        $mensaje = DB::select('CALL sp_rubros_eliminar( ? )', $argumentos);
         
         return $mensaje[0];
     }
@@ -104,6 +111,30 @@ class Rubro extends Model
         //return $array;
         return $resultado;
     }
+
+    public static function Subrubros($id) {
+        /*$argumento= [
+            $request->$id
+        ];*/
+
+        //$id= intval($id);
+        //var_dump($id);
+        //exit;
+
+        $subrubros = DB::select('CALL sp_rubros_buscarhijos(?)', $id);
+        //log::info(json_encode($rubro));
+        //var_dump(response()->json($rubro));
+        //exit;
+        //return response()->json($rubro);
+
+        //var_dump($rubro);
+        //exit;
+        return $subrubros;
+    }
+
+
+
+
 
 
 

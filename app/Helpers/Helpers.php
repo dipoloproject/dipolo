@@ -18,6 +18,15 @@
     }
 //////////////////////////////////////////////////////////////////////////////
 
+//  FUNCION PARA MOSTRAR ESTADO     ///////////
+    function show_activo_inactivo($variable) {
+        if( $variable=='A') {
+            return '<td> <label  class="label label-success"> Activo </label> </td>';
+        } else {
+            return '<td> <label  class="label label-danger"> Inactivo </label> </td>';
+        }
+    }
+//////////////////////////////////////////////////////////////////////////////
 
 
 //  FUNCION PARA MOSTRAR LOS RUBROS EN UN ESQUEMA DE ARBOL      ///////////////
@@ -70,7 +79,46 @@
             }//     FIN foreach($hijos as $hijo)
         } //    FIN if( sizeof($hijos)>0 )
     }//     FIN function buscarhijos($array, $tabs)
-///////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//  Funcion que muestra un alerta segun la operacion que se realice en RUBROS
+    function showAlert_rubros($variable_session) {
+        //  Luego de CREAR RUBRO
+            /*  Se evalúa si existe la variable  de sessión.
+            Esto se hace para que al actualizar la página, NO se muestre algun mensaje de error*/
+            if( $variable_session != NULL ) {
+                
+                //  Se evalua la variable de sesion 'creacion' y se muestra el mensaje segun corrseponda
+                if( $variable_session=='OK' ) { 
+                    ?>
+                    <script>
+                        Swal.fire({
+                                    icon: 'success',            //muestra animacion de tilde
+                                    showConfirmButton: false,   //NO muestra boton de confirmar
+                                    timer: 2000,                //tiempo que permanece visible la notificación
+                                    html: '<p class="sweetalert2-html-wellcomeText">¡Operacion EXITOSA!</p> <p class="sweetalert2-html-actionText">Creaste un nuevo rubro</p>'
+                                });
+                    </script>
+                    <?php    
+                } else {
+                    ?>
+                    <script>
+                        //  Se mostrara en la alerta el mensaje de error que indique el sp_rubros_alta()
+                        var mensaje_error= '<?= $variable_session ?>';
+                        Swal.fire({
+                                    icon: 'error',            //muestra animacion de tilde
+                                    showConfirmButton: false,   //NO muestra boton de confirmar
+                                    timer: 3000,                //tiempo que permanece visible la notificación
+                                    html: '<p class="sweetalert2-html-errorText">¡ERROR!</p> <p class="sweetalert2-html-actionText">'+mensaje_error+'</p>'
+                                });
+                    </script>
+                    <?php    
+                }
+            }   // FIN if( session('creacion') != NULL )
+    }
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 
 ?>
