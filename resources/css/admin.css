@@ -24,6 +24,8 @@
 .sweetalert2-html-actionText {
     color: #000;
     font-size: 2rem;
+    margin: 0rem;
+    padding-top: 1rem;
 }
 /*-------------------------------------------*/
 

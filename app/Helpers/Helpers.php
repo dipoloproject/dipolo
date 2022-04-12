@@ -89,32 +89,52 @@
             Esto se hace para que al actualizar la página, NO se muestre algun mensaje de error*/
             if( $variable_session != NULL ) {
                 
-                //  Se evalua la variable de sesion 'creacion' y se muestra el mensaje segun corrseponda
-                if( $variable_session=='OK' ) { 
+                //  Se evalua la variable de sesion 'creacion' y se muestra el mensaje que corrseponda
+                if( $variable_session=='creacion_OK' ) { 
                     ?>
                     <script>
                         Swal.fire({
                                     icon: 'success',            //muestra animacion de tilde
                                     showConfirmButton: false,   //NO muestra boton de confirmar
                                     timer: 2000,                //tiempo que permanece visible la notificación
-                                    html: '<p class="sweetalert2-html-wellcomeText">¡Operacion EXITOSA!</p> <p class="sweetalert2-html-actionText">Creaste un nuevo rubro</p>'
+                                    html: '<p class="sweetalert2-html-wellcomeText text-olive">¡Operacion EXITOSA!</p> <p class="sweetalert2-html-actionText">Creaste un nuevo rubro/subrubro</p>'
                                 });
                     </script>
                     <?php    
                 } else {
-                    ?>
-                    <script>
-                        //  Se mostrara en la alerta el mensaje de error que indique el sp_rubros_alta()
-                        var mensaje_error= '<?= $variable_session ?>';
-                        Swal.fire({
-                                    icon: 'error',            //muestra animacion de tilde
-                                    showConfirmButton: false,   //NO muestra boton de confirmar
-                                    timer: 3000,                //tiempo que permanece visible la notificación
-                                    html: '<p class="sweetalert2-html-errorText">¡ERROR!</p> <p class="sweetalert2-html-actionText">'+mensaje_error+'</p>'
-                                });
-                    </script>
-                    <?php    
+                    //  Se evalua la variable de sesion 'eliminacion' y se muestra el mensaje segun corrseponda
+                    if( $variable_session=='eliminacion_OK' ) {
+                        ?>
+                        <script>
+                            Swal.fire({
+                                        icon: 'success',            //muestra animacion de tilde
+                                        showConfirmButton: false,   //NO muestra boton de confirmar
+                                        timer: 2000,                //tiempo que permanece visible la notificación
+                                        html: '<p class="sweetalert2-html-wellcomeText text-olive">¡Operacion EXITOSA!</p> <p class="sweetalert2-html-actionText">Rubro eliminado</p>'
+                                    });
+                        </script>
+                        <?php   
+                    } else {
+                        //  Se evalua cualquier variable de sesion y se muestra el mensaje que corrseponda
+                        ?>
+                        
+                        <!-- SCRIPT para mostrar notificacion de ERROR+MENSAJE -->
+                        <script>
+                            //  Se mostrara en la alerta el mensaje de error que indique el sp_rubros_alta()
+                            var mensaje_error= '<?= $variable_session ?>';
+                            Swal.fire({
+                                        icon: 'error',            //muestra animacion de tilde
+                                        showConfirmButton: false,   //NO muestra boton de confirmar
+                                        timer: 3000,                //tiempo que permanece visible la notificación
+                                        html: '<p class="sweetalert2-html-errorText">¡ERROR!</p> <p class="sweetalert2-html-actionText">'+mensaje_error+'</p>'
+                                    });
+                        </script>
+                        <!-- FIN SCRIPT -->
+
+                        <?php    
+                    }
                 }
+
             }   // FIN if( session('creacion') != NULL )
     }
 //////////////////////////////////////////////////////////////////////////////////////////////////////

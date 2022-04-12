@@ -95,7 +95,7 @@ foreach($rubros as $rubro) {
                                             </a>
                                         </div>
                                         <div>
-                                            <form action="{{route('rubros.eliminar', $subrubro->idRubro)}}" method="POST">
+                                            <form class="form_eliminar-rubro" action="{{route('rubros.eliminar', $subrubro->idRubro)}}" method="POST">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-xs bg-red margin borrar-registro" title="Eliminar">

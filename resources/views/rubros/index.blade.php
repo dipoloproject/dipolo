@@ -83,7 +83,7 @@
                                             </a>
                                         </div>
                                         <div>
-                                            <form action="{{route('rubros.eliminar', $rubro->idRubro)}}" method="POST">
+                                            <form class="form_eliminar-rubro" action="{{route('rubros.eliminar', $rubro->idRubro)}}" method="POST">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-xs bg-red margin borrar-registro" title="Eliminar">
@@ -143,9 +143,11 @@
   
   @include ('templates/footer')
   
-  <?php 
+  <?php    
+  
     //  Se muestra un mensaje de alerta al redireccionar a esta vista (luego de crear un rubro)
-      showAlert_rubros( session('creacion_rubro') );    // funcion declarada y definida en app/Helpers/Helpers.php
+    showAlert_rubros( session('creacion_rubro') );    // funcion declarada y definida en app/Helpers/Helpers.php
+    showAlert_rubros( session('eliminacion_rubro') );
   ?>
   
 

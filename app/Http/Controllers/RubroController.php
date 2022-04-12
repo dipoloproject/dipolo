@@ -99,12 +99,22 @@ class RubroController extends Controller
         $respuesta = Rubro::Alta($argumentos);
 
         //var_dump($respuesta->Mensaje); exit;
-        if($respuesta->Mensaje == 'OK') {
+        if($respuesta->Mensaje == 'creacion_OK') {
             /*  Se redirecciona a otra vista (colocando el nombre de la vista)
-                y se crea un mensaje de sesión llamado 'creacion' que contendrá la leyenda 'OK' */
+                y se crea un mensaje de sesión llamado 'creacion_rubro' que contendrá la leyenda 'creacion_OK' */
             return redirect()->route('rubros.index')->with('creacion_rubro', $respuesta->Mensaje);
+
         } else {
-            return redirect()->route('rubros.crear')->with('creacion_rubro', $respuesta->Mensaje)->withInput();
+            /*Se debe tener en cuenta si se está creando un Rubro o un Subrubto, de acuerdo a eso,
+            idRubroPadre será NULL o distinto de NULL. En caso que sea NULL, hay que asignarle 0 */
+            if( $request->idRubroPadre == NULL){    // Se esta creando un Rubro
+                $id= 0;
+            } else {                                // Se está creando un Subrubro
+                $id= $request->idRubroPadre;
+            }
+            /*  Se redirecciona a otra vista (colocando el nombre de la vista)
+            y se crea un mensaje de sesión llamado 'creacion_rubro' que contendrá la leyenda correspondiente */
+            return redirect()->route('rubros.crear', ['id'=>$id] )->with('creacion_rubro', $respuesta->Mensaje)->withInput();
         }
         
         //exit;

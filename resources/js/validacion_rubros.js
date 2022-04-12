@@ -133,5 +133,51 @@ $(document).ready(function() {
     
     }// FIN mostrarInvalidoError()*/
 
+
+
+
+
+
+
+
+    /*  Esto se ejecuta al hacer CLICK el boton Eliminar Rubro   */
+    $('.form_eliminar-rubro').submit( function(e) {                                                                            //
+                
+        e.preventDefault();
+        
+        Swal.fire({
+            icon: 'warning',            //muestra animacion de tilde
+            html: '<p class="sweetalert2-html-wellcomeText text-orange">¡Confirmar operación!</p> <p class="sweetalert2-html-actionText">¿Deseas eliminar el rubro?</p>',
+            showConfirmButton: true,   //NO muestra boton de confirmar
+            showCancelButton: true,   //NO muestra boton de confirmar
+            confirmButtonText: 'Eliminar',
+            cancelButtonText: 'Cancelar',
+            
+            buttonsStyling: false,
+                customClass:{
+                    icon:"text-yellow",
+                    confirmButton: 'btn btn-primary boton-confirm margin',
+                    cancelButton: 'btn btn-danger boton-cancel margin'
+                }
+
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();  
+            }
+          });
+
+          
+    })                                                                                                                      //
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+
+
+
+
+
+
+
+
+
 });// ./$('document')
         
