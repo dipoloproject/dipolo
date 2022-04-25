@@ -63,6 +63,17 @@ class Rubro extends Model
         return $mensaje[0];
     }
 
+    public static function Actualizar($argumentos) {
+        
+        echo("INGRESA AL METODO DEL MODELO");
+        echo("<pre>");
+        var_dump($argumentos);
+        echo("</pre>");
+        $mensaje = DB::select('CALL sp_rubros_actualizar( ?, ?, ?, ?, ?, ?, ?, ? )', $argumentos);
+        var_dump($mensaje[0]);
+        return $mensaje[0];
+    }
+
     public static function Eliminar($argumentos) {
         
         $mensaje = DB::select('CALL sp_rubros_eliminar( ? )', $argumentos);

@@ -88,7 +88,7 @@
                                           
                                         <div class="box-footer">
                                             <button type="submit" class="btn btn-primary">Crear Rubro</button>
-                                            <input type="hidden" name="button-action-rubro" value="actualizar"><!-- $_POST['crear-producto] indicara en el archivo de action si éste fue presionado-->
+                                            <input type="hidden" name="button-action-rubro" value="crear"><!-- $_POST['crear-producto] indicara en el archivo de action si éste fue presionado-->
                                         </div>
                                     </form>
                                 </div> <!-- /.box-body -->

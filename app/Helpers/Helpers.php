@@ -102,40 +102,54 @@
                     </script>
                     <?php    
                 } else {
-                    //  Se evalua la variable de sesion 'eliminacion' y se muestra el mensaje segun corrseponda
-                    if( $variable_session=='eliminacion_OK' ) {
+                    //  Se evalua la variable de sesion 'creacion' y se muestra el mensaje que corrseponda
+                    if( $variable_session=='actualizacion_OK' ) { 
                         ?>
                         <script>
                             Swal.fire({
                                         icon: 'success',            //muestra animacion de tilde
                                         showConfirmButton: false,   //NO muestra boton de confirmar
                                         timer: 2000,                //tiempo que permanece visible la notificación
-                                        html: '<p class="sweetalert2-html-wellcomeText text-olive">¡Operacion EXITOSA!</p> <p class="sweetalert2-html-actionText">Rubro eliminado</p>'
+                                        html: '<p class="sweetalert2-html-wellcomeText text-olive">¡Operacion EXITOSA!</p> <p class="sweetalert2-html-actionText">Has actualizado el rubro/subrubro</p>'
                                     });
                         </script>
-                        <?php   
-                    } else {
-                        //  Se evalua cualquier variable de sesion y se muestra el mensaje que corrseponda
-                        ?>
-                        
-                        <!-- SCRIPT para mostrar notificacion de ERROR+MENSAJE -->
-                        <script>
-                            //  Se mostrara en la alerta el mensaje de error que indique el sp_rubros_alta()
-                            var mensaje_error= '<?= $variable_session ?>';
-                            Swal.fire({
-                                        icon: 'error',            //muestra animacion de tilde
-                                        showConfirmButton: false,   //NO muestra boton de confirmar
-                                        timer: 3000,                //tiempo que permanece visible la notificación
-                                        html: '<p class="sweetalert2-html-errorText">¡ERROR!</p> <p class="sweetalert2-html-actionText">'+mensaje_error+'</p>'
-                                    });
-                        </script>
-                        <!-- FIN SCRIPT -->
-
                         <?php    
-                    }
-                }
+                    } else {
+                        //  Se evalua la variable de sesion 'eliminacion' y se muestra el mensaje segun corrseponda
+                        if( $variable_session=='eliminacion_OK' ) {
+                            ?>
+                            <script>
+                                Swal.fire({
+                                            icon: 'success',            //muestra animacion de tilde
+                                            showConfirmButton: false,   //NO muestra boton de confirmar
+                                            timer: 2000,                //tiempo que permanece visible la notificación
+                                            html: '<p class="sweetalert2-html-wellcomeText text-olive">¡Operacion EXITOSA!</p> <p class="sweetalert2-html-actionText">Rubro eliminado</p>'
+                                        });
+                            </script>
+                            <?php   
+                        } else {
+                            //  Se evalua cualquier variable de sesion y se muestra el mensaje que corrseponda
+                            ?>
+                            
+                            <!-- SCRIPT para mostrar notificacion de ERROR+MENSAJE -->
+                            <script>
+                                //  Se mostrara en la alerta el mensaje de error que indique el sp_rubros_alta()
+                                var mensaje_error= '<?= $variable_session ?>';
+                                Swal.fire({
+                                            icon: 'error',            //muestra animacion de tilde
+                                            showConfirmButton: false,   //NO muestra boton de confirmar
+                                            timer: 3000,                //tiempo que permanece visible la notificación
+                                            html: '<p class="sweetalert2-html-errorText">¡ERROR!</p> <p class="sweetalert2-html-actionText">'+mensaje_error+'</p>'
+                                        });
+                            </script>
+                            <!-- FIN SCRIPT -->
 
-            }   // FIN if( session('creacion') != NULL )
+                            <?php    
+                        }   //  FIN if( session('eliminacion') != NULL ) + else (muestra notificacion de ERROR)
+                    }       //  FIN if( session('actualizacion') != NULL )
+                }           //  FIN if( session('creacion') != NULL )
+
+            }   // FIN if( $variable_session != NULL )
     }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 

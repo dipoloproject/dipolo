@@ -88,7 +88,7 @@ foreach($rubros as $rubro) {
                                             </a>
                                         </div>
                                         <div>
-                                            <a  href="{{route('rubros.actualizar', $subrubro->idRubro)}}" 
+                                            <a  href="{{route('rubros.editar', $subrubro->idRubro)}}" 
                                                 class="btn btn-xs bg-blue margin"
                                                 title="Editar">
                                                     <i class="fa fa-pencil" ></i>

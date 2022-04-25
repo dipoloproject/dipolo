@@ -1,14 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Rubro;
-
 use Illuminate\Http\Request;
 
-//use Illuminate\Http\Request;
-
-//importar el modelo Rubro (tiene que estar creado primero)
 
 class RubroController extends Controller
 {
@@ -116,23 +111,58 @@ class RubroController extends Controller
             y se crea un mensaje de sesión llamado 'creacion_rubro' que contendrá la leyenda correspondiente */
             return redirect()->route('rubros.crear', ['id'=>$id] )->with('creacion_rubro', $respuesta->Mensaje)->withInput();
         }
-        
-        //exit;
-
-        //return $respuesta;
-        
     }
 
-    public function actualizar($id)
+
+    
+    public function editar($id)
     {
         //  SE RECUPERA EL RUBRO QUE SE DESEA ACTUALIZAR
         $argumento= [intval($id)];
         $array_respuesta= Rubro::Dame($argumento);
         $rubro= $array_respuesta[0];
 
-        return view( 'rubros.actualizar', compact('rubro') );
+        return view( 'rubros.editar', compact('rubro') );
         //['rubros'=>$rubros] es equivalente a compact('rubros') 
     }
+
+    public function actualizar(Request $request)
+    {
+        //Se recuperan los datos ingresados en el formulario para crear un Rubro
+        $argumentos= [
+                        $request->idRubro,
+                        $request->idRubroPadre,
+                        $request->nombreRubro,
+                        $request->descripcionRubro,
+                        $request->ordenRubro,
+                        $request->destacadoRubro,
+                        $request->menuRubro,
+                        $request->estadoRubro
+                    ];
+
+        $respuesta = Rubro::Actualizar($argumentos);
+
+        if($respuesta->Mensaje == 'actualizacion_OK') {
+            /*  Se redirecciona a otra vista (colocando el nombre de la vista)
+                y se crea un mensaje de sesión llamado 'creacion_rubro' que contendrá la leyenda 'creacion_OK' */
+            return redirect()->route('rubros.index')->with('actualizacion_rubro', $respuesta->Mensaje);
+
+        } else {
+            /*Se debe tener en cuenta si se está creando un Rubro o un Subrubto, de acuerdo a eso,
+            idRubroPadre será NULL o distinto de NULL. En caso que sea NULL, hay que asignarle 0 */
+            if( $request->idRubroPadre == NULL){    // Se esta creando un Rubro
+                $id= 0;
+            } else {                                // Se está creando un Subrubro
+                $id= $request->idRubroPadre;
+            }
+            /*  Se redirecciona a otra vista (colocando el nombre de la vista)
+            y se crea un mensaje de sesión llamado 'creacion_rubro' que contendrá la leyenda correspondiente */
+            //return redirect()->route('rubros.editar')->with('actualizacion_rubro', $respuesta->Mensaje)->withInput();
+            return redirect()->back()->withInput()->with('actualizacion_rubro', $respuesta->Mensaje);
+        }
+    }
+
+
 
     public function eliminar($id)
     {
@@ -155,10 +185,6 @@ class RubroController extends Controller
         return view( 'rubros.subrubros', compact('subrubros') );
         //['rubros'=>$rubros] es equivalente a compact('rubros') 
     }
-
-
-
-
 
     /**
      * Update the specified resource in storage.

@@ -1,4 +1,5 @@
 <?php 
+
 use App\Models\Rubro;
 
 ?>
@@ -30,7 +31,10 @@ use App\Models\Rubro;
                               </div> -->
                               <div class="box-body">       
                                     <!-- form start -->
-                                    <form role="form" name="form_crear-rubro" id="form_crear-rubro" method="post" action="action-rubro.php"> <!--  enctype="multipart/form-data" -->
+                                    <form role="form" name="form_editar-rubro" id="form_editar-rubro" method="post" action="{{route('rubros.actualizar')}}"> <!--  enctype="multipart/form-data" -->
+                                          <!-- Token de seguridad exigido por laravel -->
+                                          @csrf
+                                        <!-- FIN token -->      
                                           <div class="box-body"><!-- contenedor de ambas columnas del formulario -->
                                                 <div class="col-md-6 box-body"><!-- 1ra columna del formulario -->
                                                       <!-- <div class="form-group" id="div_idRubroPadre">
@@ -43,6 +47,7 @@ use App\Models\Rubro;
 
                                                       <div><!-- Contiene el identificador del Rubro que será el padre -->
                                                         <input type="hidden" name="idRubroPadre" value="{{$rubro->idRubroPadre}}">
+                                                        <input type="hidden" name="idRubro" value="{{$rubro->idRubro}}">
                                                       </div>
 
                                                       <div class="form-group">
@@ -106,4 +111,7 @@ use App\Models\Rubro;
 
   @include ('templates/footer')
 
-
+  <?php 
+    //  Se muestra un mensaje de alerta luego de enviar el formulario (al intentar crear un rubro)
+      showAlert_rubros( session('actualizacion_rubro') );    // funcion declarada y definida en app/Helpers/Helpers.php
+  ?>
