@@ -30,7 +30,7 @@
                 <tr>
                   <th>Nombre</th>
                   <th>Estado</th>
-                  <!-- <th>Descripción</th> -->
+                  <th>Imagen</th>
                   <th>Acciones</th>
                 </tr>
                 </thead>
@@ -49,41 +49,44 @@
                         }*/
                         //$rubros = Rubro::allTopLevel(); //la variable guarda un arreglo de objetos (registros o filas del resultSet)
                         //debuguear($productos);
-                        foreach( $rubros as $rubro ):
+                        foreach( $productos as $producto ):
                         
-                            if($rubro->idRubroPadre == NULL): ?>
+                            //if($rubro->idRubroPadre == NULL): ?>
                                 <tr>
-                                    <td> <?php echo $rubro->nombreRubro; ?> </td>
+                                    <td> <?php echo $producto->nombreProducto; ?> </td>
 
                                     <!-- Muesta Activo o Inactivo en VERDE o ROJO respectivamente -->
-                                    <?php echo show_activo_inactivo($rubro->estadoRubro); ?>
-
+                                    <?php echo show_activo_inactivo($producto->estadoProducto); ?>
+                                    <!-- Muesta la IMAGEN -->
+                                    <td align="center"> 
+                                      <img src="<?php echo($producto->ruta_imagen); ?>" alt="IMAGEN" height="40px">
+                                    </td>
                                     <!-- Botones de ACCIONES: Crear Subrubro/Ver Subrubros/Editar/Eliminar -->
                                     <td>
                                       <div class="box-create-info-edit-delete">
                                         <div>
-                                            <a  href="{{route('rubros.crear', $rubro->idRubro)}}" 
+                                            <a  href="{{route('rubros.crear', $producto->idProducto)}}" 
                                                 class="btn btn-xs bg-green margin"
                                                 title="Crear subrubro">
                                                     <i class="fa fa-sitemap" ></i>
                                             </a>
                                         </div>
                                         <div>
-                                            <a  href="{{route('rubros.subrubros', $rubro->idRubro)}}" 
+                                            <a  href="{{route('rubros.subrubros', $producto->idProducto)}}" 
                                                 class="btn btn-xs bg-orange margin"
                                                 title="Subrubros">
                                                     <i class="fa fa-info-circle" ></i>
                                             </a>
                                         </div>
                                         <div>
-                                            <a  href="{{route('rubros.editar', $rubro->idRubro)}}" 
+                                            <a  href="{{route('rubros.editar', $producto->idProducto)}}" 
                                                 class="btn btn-xs bg-blue margin"
                                                 title="Editar">
                                                     <i class="fa fa-pencil" ></i>
                                             </a>
                                         </div>
                                         <div>
-                                            <form class="form_eliminar-rubro" action="{{route('rubros.eliminar', $rubro->idRubro)}}" method="POST">
+                                            <form class="form_eliminar-rubro" action="{{route('rubros.eliminar', $producto->idProducto)}}" method="POST">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-xs bg-red margin borrar-registro" title="Eliminar">
@@ -96,7 +99,7 @@
                                         
 
 
-                                        <!-- <a  href="{{route('rubros.eliminar', $rubro->idRubro)}}" 
+                                        <!-- <a  href="{{route('rubros.eliminar', $producto->idProducto)}}" 
                                             class="btn btn-xs bg-red margin borrar-registro"
                                             title="Eliminar">
                                                 <i class="fa fa-trash" ></i>
@@ -109,7 +112,7 @@
                                     </td>
                                 </tr>
 
-                            <?php endif; ?>
+                            <?php // endif; ?>
                         
                         <?php endforeach; ?>
 

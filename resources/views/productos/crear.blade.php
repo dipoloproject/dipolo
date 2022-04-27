@@ -25,7 +25,10 @@
                             </div> -->
                             <div class="box-body">
                                     <!-- form start -->
-                                    <form role="form" name="form_crear-producto" id="form_crear-producto" method="post" action="{{route('productos.alta')}}"> <!--  enctype="multipart/form-data" -->
+                                    <form role="form" name="form_crear-producto" id="form_crear-producto" 
+                                          method="post" action="{{route('productos.alta')}}"
+                                          enctype="multipart/form-data"> <!--  enctype="multipart/form-data" -->
+
                                         <!-- Token de seguridad exigido por laravel -->
                                         @csrf
                                         <!-- FIN token -->
@@ -157,6 +160,16 @@
                                                             <label for="vistasProducto">Vistas</label>
                                                             <input type="text" class="form-control" id="vistasProducto" name="vistasProducto" placeholder="Ingresar vistas del Producto">
                                                     </div>
+
+                                                    <div class="form-group">
+                                                                <label for="ruta_imagen">Imágen</label>
+                                                                <input type="file" class="form-control" id="ruta_imagen" name="ruta_imagen" 
+                                                                        placeholder="Ingresar vistas del Producto"
+                                                                        accept="image/*">
+                                                                
+                                                    </div>
+
+
                                                     <!-- <div class="form-group">
                                                             <label for="stockProducto">Stock <<< </label>
                                                             <input type="text" class="form-control" id="stockProducto" name="stockProducto" placeholder="Ingresar stock del Producto">

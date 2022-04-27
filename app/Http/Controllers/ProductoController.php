@@ -1,11 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Intervention\Image\Facades\Image;
+//  Importacion de MODELOS
 use App\Models\Rubro;
 use App\Models\Producto;
 
 use Illuminate\Http\Request;
+
+//  Importacion de INTERVENTION IMAGE
+
+
 
 class ProductoController extends Controller
 {
@@ -72,6 +77,44 @@ class ProductoController extends Controller
         echo("condicionProducto:".$request->condicionProducto."<br>");
         echo("estadoProducto:".$request->estadoProducto."<br><br>");
 
+        echo("ruta_imagen:".$request->ruta_imagen."<br><br>");
+        //var_dump($request->ruta_imagen);
+
+        /*
+        $request->validate(['
+        ruta_imagen'=>'required|image|mimes:jpeg,jpg,png,svg,gif|max:4096']);
+        */
+        //return $request->file('ruta_imagen');
+
+        if( $request->hasFile('ruta_imagen') ){
+            echo("SE MUESTRA ALGO...<br>");
+            $imagen= $request->file('ruta_imagen');
+            //return $imagen; exit;
+
+            $url_imagen= '/images/'.date('ymdhis').'_'. $imagen->getClientOriginalName();
+            //echo($url_imagen);
+            $url_store= public_path().'/images';
+            //echo($url_store);
+            //exit;
+
+            $ruta_completa= public_path().'/images/'.date('ymdhis').'_'. $imagen->getClientOriginalName();
+            //echo($ruta_completa);exit;
+
+            //$imagen->move($url_store, $url_imagen);
+
+
+            Image::make( $request->file('ruta_imagen') )->resize(300, null, function ($constraint) {
+                                                                    $constraint->aspectRatio();
+                                                                })->save($ruta_completa);
+
+
+
+
+            $request->ruta_imagen= $url_imagen;
+            //echo($request->ruta_imagen);
+        }
+
+
         //Se recuperan los datos ingresados en el formulario para crear un Rubro
         $argumentos= [
                         $request->idRubro,
@@ -87,7 +130,8 @@ class ProductoController extends Controller
                         $request->destacadoProducto,
                         $request->vistasProducto,
                         $request->condicionProducto,
-                        $request->estadoProducto
+                        $request->estadoProducto,
+                        $request->ruta_imagen
                     ];
 
         $respuesta = Producto::Alta($argumentos);
