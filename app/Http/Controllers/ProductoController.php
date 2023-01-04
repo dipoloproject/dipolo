@@ -102,14 +102,12 @@ class ProductoController extends Controller
 
             //$imagen->move($url_store, $url_imagen);
 
-
+            //  Se modifica tamaño de imagen y Guarda la imagen (archivo) en direccion_destino+nombre_final_imagen
             Image::make( $request->file('ruta_imagen') )->resize(300, null, function ($constraint) {
                                                                     $constraint->aspectRatio();
                                                                 })->save($ruta_completa);
 
-
-
-
+            //  Guarda ruta_ubicacion de la imagen + nombre_imagen. Se guardara en base de datos
             $request->ruta_imagen= $url_imagen;
             //echo($request->ruta_imagen);
         }
